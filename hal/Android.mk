@@ -33,8 +33,10 @@ ifeq ($(SOONG_CONFIG_android_hardware_audio_run_64bit), true)
 LOCAL_MULTILIB := 64
 endif
 
+ifneq ($(QCPATH),)
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_LSM_HIDL)),true)
 LOCAL_VINTF_FRAGMENTS += ../configs/common/manifest_non_qmaa_extn.xml
+endif
 endif
 
 LOCAL_CFLAGS += -Wno-macro-redefined
