@@ -786,8 +786,8 @@ int AudioExtn::audio_extn_hidl_init() {
     }
 
 #ifdef PAL_HIDL_ENABLED
-   /* register audio PAL HIDL */
-    sp<IPAL> service = new PAL();
+    /* register audio PAL HIDL */
+    sp<IPAL> service = sp<PAL>::make();
     if(android::OK !=  service->registerAsService()) {
         AHAL_ERR("Could not register PAL service");
         return -EINVAL;
@@ -798,7 +798,7 @@ int AudioExtn::audio_extn_hidl_init() {
 
 #ifdef AGM_HIDL_ENABLED
    /* register AGM HIDL */
-    sp<IAGM> agm_service = new AGM();
+    sp<IAGM> agm_service = sp<AGM>::make();
     AGM *temp = static_cast<AGM *>(agm_service.get());
     if (temp->is_agm_initialized()) {
         if(android::OK != agm_service->registerAsService()) {
